@@ -43,6 +43,12 @@ For more validation images obtained during the training process, see:
 
 ##  Discussion
 
+A test image of a pair of horses is inputted into models trained for horses and cats independently.  From the images below, we see that the model trained for horses is able to select the correct color for the horse (i.e., brown), whereas the model trained for cats selected the most common cat color (i.e., brownish grey) for the horse. 
+
+This suggests that, while both models can identify objects to-be-colored, training on similar images is important to capture the "most common" colors of the objects.  When an input is greyscale, information regarding the RGB scale is lost and model must compensate via its "intuition" of colors of similar objects.
+
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/evaluate.png" alt="Test image for 32-color horses" width="600"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/evaluate.png" alt="Test image for 32-color horses" width="600"/>
+
 
 ##  Method
 
