@@ -25,8 +25,23 @@ For more validation images obtained during the training process, see:
 - https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/32_horses
 
 ### Cats
+Similarly for cats, we observe the following changes in loss for the 16-color and 32-color categories, respectively.
 
-### Evaluation Image
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_cats/losses.svg" alt="Training loss for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/losses.svg" alt="Training loss for 32 colors" width="400"/>
+
+The colorization quality improves during training. However, it appears that colorization of cats is more difficult, given the greater diversity of fur colors than that of horses.  Instead, we observe that the most common cat color (i.e., brownish grey) is selected for most cats which do not have light (white) or dark (black) fur.
+
+In the below validation images (epochs 0, 99, and 199), the greyscale images, colorized images, saturated images (ground truths), and original images are shown (top to bottom).
+
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_cats/valid_e0.png" alt="Output of Epoch 0 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/valid_e0.png" alt="Output of Epoch 0 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_cats/valid_e99.png" alt="Output of Epoch 99 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/valid_e99.png" alt="Output of Epoch 99 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_cats/valid_e199.png" alt="Output of Epoch 199 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/valid_e199.png" alt="Output of Epoch 199 for 32 colors" width="400"/>
+
+For more validation images obtained during the training process, see:
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/16_cats
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/32_cats
+
+##  Discussion
 
 
 ##  Method
