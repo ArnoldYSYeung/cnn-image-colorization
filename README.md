@@ -53,17 +53,26 @@ This suggests that, while both models can identify objects to-be-colored, traini
 ##  Method
 
 The following CNN architecture is used:
-- 2 Downsamplng Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Max Pooling)
+- 2 Downsampling Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Max Pooling)
 - 1 Refactoring Convolutional Layer (2D Convolution, Batch Normalization, ReLU)
 - 2 Upsampling Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Upsampling)
 - 1 Convolutional Layer (2D Convolution)
+
+For training, the Adam optimizer and Cross Entropy Loss function were used.
 
 While color regression within a color space is a viable option, I selected saturating the RGB images to a selected number of color categories, turning the task into a classification problem.  This (hopefully) ensures that the loss metric is a representation of the perception of color, instead of the distance within an arbitruary color space (e.g., RGB) which may not necessarily represent how humans perceive colors, psychologically (e.g., 1 color, not 3 combined) and biologically (e.g., cones do not map to color space). 
 
 ##  Execution
 This project requires installation of the following packages:
-- PyTorch
-- Torchvision
-- Numpy
-- Matplotlib
-- PIL
+- PyTorch 1.1.0
+- Torchvision 0.3.0
+- Numpy 1.16.4
+- Matplotlib 3.1.0
+- PIL 6.0.0
+
+To run experiment, in [`src\color_classification.py`](https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/src/color_classification.py), set `train_params['image_classes']` to the CIFAR-10 classes to train the model on.  Indicate the location of the color numpy file to use in `train_params['colors']` and the model to load in `train_params['load_location']`.
+
+When running function `main(...)`, set parameter `train_mode=True` for training and `train_mode=False` for inference.  For evaluating with a specific image, enter in the image location in the parameter `inference_image`.
+
+### Problems?
+One potential reason for low quality output images or errors may be due to the conversion of RGB, greyscale, and color categorical images.  When converted to a Numpy array, images may take values with the ranges 0 to 1, -1 to 1, or 0 to 255.  If the user encounters such problems, he/she should verify that the conversion scale is proper when calling function `normalize_array` in [`src\utils.py`](https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/src/utils.py).  I would make the code more robust, but no time :(
