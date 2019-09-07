@@ -1,9 +1,11 @@
 """
-Colorization CNN
+Colorization CNN: Converting greyscale images to RGB images through color classification.
 
 Author :                    Arnold Yeung
-Date :                      Sept 
+Date :                      February 2019
 
+Updates:
+2019-09-06          (AY)            Modified code for publication.
 """
 import os
 
@@ -402,14 +404,6 @@ if __name__ == "__main__":
                     'num_in_channels':              1,              #   1 if down-size to categorical colors, 3 if keep RGB
             }
     
-    in_image = '/h/arnold/Desktop/NN/Colorization/old_time.png'
+    in_image = '/h/arnold/Desktop/NN/Colorization/image.png'
     main(model_params, train_params, train_mode=False, inference_image=in_image)
-    
-    """
-    train_params['colors'] = './colours/colour_kmeans32_cat7.npy'
-    train_params['image_classes'] = [7]
-    main(model_params, train_params)
-    
-    train_params['image_classes'] = [3]
-    main(model_params, train_params)
-    """
+   
