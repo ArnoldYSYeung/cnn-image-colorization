@@ -14,12 +14,15 @@ After training for 200 epochs, I observed the following changes in loss for the 
 
 <img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_horses/losses.svg" alt="Training loss for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/losses.svg" alt="Training loss for 32 colors" width="400"/>
 
-The colorization quality improves during training.  In the below images, the greyscale images, colorized images, saturated images (ground truths), and original images are shown (top to bottom).
+The colorization quality improves during training.  In the below validation images (epochs 0, 99, and 199), the greyscale images, colorized images, saturated images (ground truths), and original images are shown (top to bottom).
 
 <img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_horses/valid_e0.png" alt="Output of Epoch 0 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/valid_e0.png" alt="Output of Epoch 0 for 32 colors" width="400"/>
 <img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_horses/valid_e99.png" alt="Output of Epoch 99 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/valid_e99.png" alt="Output of Epoch 99 for 32 colors" width="400"/>
 <img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/16_horses/valid_e199.png" alt="Output of Epoch 199 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/valid_e199.png" alt="Output of Epoch 199 for 32 colors" width="400"/>
 
+For more validation images obtained during the training process, see:
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/16_horses
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/32_horses
 
 ### Cats
 
