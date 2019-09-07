@@ -1,7 +1,7 @@
 """
 Utility functions.
-
-
+Author :                    Arnold Yeung
+Date :                      September 6th, 2019
 """
 import os
 
@@ -11,7 +11,6 @@ import urllib.request
 import tarfile
 
 import matplotlib.pyplot as plt
-
 
 def rgb_to_greyscale(image, max_pixel = 1.0):
     """
