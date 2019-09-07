@@ -52,6 +52,12 @@ This suggests that, while both models can identify objects to-be-colored, traini
 
 ##  Method
 
+The following CNN architecture is used:
+- 2 Downsamplng Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Max Pooling)
+- 1 Refactoring Convolutional Layer (2D Convolution, Batch Normalization, ReLU)
+- 2 Upsampling Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Upsampling)
+- 1 Convolutional Layer (2D Convolution)
+
 While color regression within a color space is a viable option, I selected saturating the RGB images to a selected number of color categories, turning the task into a classification problem.  This (hopefully) ensures that the loss metric is a representation of the perception of color, instead of the distance within an arbitruary color space (e.g., RGB) which may not necessarily represent how humans perceive colors, psychologically (e.g., 1 color, not 3 combined) and biologically (e.g., cones do not map to color space). 
 
 ##  Execution
