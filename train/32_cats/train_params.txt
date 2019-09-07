@@ -1,0 +1,1 @@
+{'download_dir': '../data', 'image_classes': [3], 'batch_size': 100, 'num_epochs': 200, 'learning_rate': 0.0001, 'learning_decay': 0.9, 'report_file': 'report', 'report_every_epoch': 10, 'report_every_batch': 100, 'colors': './colours/colour_kmeans32_cat7.npy', 'load_location': '/h/arnold/Desktop/NN/Colorization/train/16_horses/model_e199.pth', 'categorical': False}
