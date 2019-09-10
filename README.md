@@ -6,6 +6,8 @@ A convolutional neural network (CNN) architecture is designed to convert greysca
 
 Once trained, new images may be inputted into the CNN for colorization.  Images similar to the training dataset (e.g., containing the same objects) work best with the CNN architecture.
 
+A [UNet](https://arxiv.org/abs/1505.04597) architecture for image colorization has also been implemented.  I don't have the time to upload it yet, but soon.  Promise :)
+
 ##  Results
 The CNN is trained with 2 classes in the CIFAR-10 dataset: horses and cats.  Experiments for each class were conducted with both the 16-color option and the 32-color option.
 
