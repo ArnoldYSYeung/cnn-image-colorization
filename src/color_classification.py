@@ -95,8 +95,6 @@ class CNN(nn.Module):
         self.final_layers = nn.ModuleList().cuda()
         self.final_layers.append(nn.Conv2d(in_channels, self.num_colors, self.kernel_size, 
                                            padding=self.padding))
-        
-        ###################################################
 
     def forward(self, X):
         """
@@ -105,14 +103,6 @@ class CNN(nn.Module):
             X (np.array) :      input array (num_samples * height * width * 3)
         Returns:
             Output array
-        """
-        """
-        self.out1 = self.downconv1(x)
-        self.out2 = self.downconv2(self.out1)
-        self.out3 = self.rfconv(self.out2)
-        self.out4 = self.upconv1(self.out3)
-        self.out5 = self.upconv2(self.out4)
-        self.out_final = self.finalconv(self.out5)
         """
         
         layer_lists = [self.down_conv_layers, self.refactor_layers, 
@@ -352,8 +342,6 @@ def main(model_params, train_params, train_mode=True, inference_image=""):
     
     
     print("Getting colors...")
-    #colors_path = get_file(fname="colors", url="http://www.cs.toronto.edu/~jba/kmeans_colour_a2.tar.gz",
-    #                       save_dir=data_dir)
     color_fname = train_params['colors']
     print(color_fname)
     colors = np.load(color_fname, allow_pickle=True, encoding='bytes')[0]
