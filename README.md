@@ -1,14 +1,14 @@
 # cnn-image-colorization
-Using Convolutional Neural Networks to Colorize Greyscale Images
+Using Convolutional Neural Networks to Colorize Greyscale Images (vanilla CNN and UNet)
 
 ##  Description
-A convolutional neural network (CNN) architecture is designed to convert greyscale images to colorized RGB images.  The network is trained and evaluated on independent classes in the [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html). Training RGB images are saturated to pre-selected 16- and 32-color options.  Therefore, output colorized images are also restricted to these options. 
+A vanilla convolutional neural network (CNN) architecture and a [UNet](https://arxiv.org/abs/1505.04597) architecture are designed to convert greyscale images to colorized RGB images.  The network is trained and evaluated on independent classes in the [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html). Training RGB images are saturated to pre-selected 16- and 32-color options.  Therefore, output colorized images are also restricted to these options. 
 
 Once trained, new images may be inputted into the CNN for colorization.  Images similar to the training dataset (e.g., containing the same objects) work best with the CNN architecture.
 
-A [UNet](https://arxiv.org/abs/1505.04597) architecture for image colorization has also been implemented.  I don't have the time to upload it yet, but soon.  Promise :)
+Our results suggest that the skip connections in the UNet architecture leads to better performance.  This may be because skip connections allow information loss in earlier layers (e.g., due to down-sampling) to be passed to later layers.  Consequentially, colorized images have sharper features and more accurate colors. 
 
-##  Results
+##  Vanilla CNN Results
 The CNN is trained with 2 classes in the CIFAR-10 dataset: horses and cats.  Experiments for each class were conducted with both the 16-color option and the 32-color option.
 
 ### Horses
@@ -43,22 +43,55 @@ For more validation images obtained during the training process, see:
 - https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/16_cats
 - https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train/32_cats
 
+##  UNet Results
+The UNet architecture is also trained with the same experiments.  Overall, we observe that the UNet architecture enhances performance by skip connections.  Contrasting the vanilla CNN architecture, information loss (e.g., due to down-sampling) in earlier layers is maintained by passing it directly to later layers.
+
+##  Horses
+Compared to the validation images colorized by the vanilla CNN architecture, we observe that the quality of the validation images colorized by the UNet is visually better at the same epochs (i.e., epochs 0, 99, and 199) for both the 16-color and 32-color experiments.  
+
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_horses/valid_e0.png" alt="Output of Epoch 0 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_horses/valid_e0.png" alt="Output of Epoch 0 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_horses/valid_e99.png" alt="Output of Epoch 99 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_horses/valid_e99.png" alt="Output of Epoch 99 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_horses/valid_e199.png" alt="Output of Epoch 199 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_horses/valid_e199.png" alt="Output of Epoch 199 for 32 colors" width="400"/>
+
+For more validation images obtained during the training process, see:
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train_unet/16_horses
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train_unet/32_horses
+
+##  Cats
+Likewise, the images colorized by the UNet architecture for cats appear to be of higher quality when compared to the ground-truth images.
+
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_cats/valid_e0.png" alt="Output of Epoch 0 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_cats/valid_e0.png" alt="Output of Epoch 0 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_cats/valid_e99.png" alt="Output of Epoch 99 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_cats/valid_e99.png" alt="Output of Epoch 99 for 32 colors" width="400"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/16_cats/valid_e199.png" alt="Output of Epoch 199 for 16 colors" width="400"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_cats/valid_e199.png" alt="Output of Epoch 199 for 32 colors" width="400"/>
+
+
+For more validation images obtained during the training process, see:
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train_unet/16_cats
+- https://github.com/ArnoldYSYeung/cnn-image-colorization/tree/master/train_unet/32_cats
+
 ##  Discussion
+
+From the validation images above, we can see that the UNet architecture outperforms the CNN architecture when generating colorized images which are more accurate in color and sharper in features.  The skip connections in the UNet architecture combine information from earlier layers (e.g., spatial context) to those of later layers (e.g., more compact and complex features), allowing both to be used and maintained in later layers.  Also, the skip connections provide shorter paths for the gradient during backpropagation and reduces vanishing gradients. 
 
 A test image of a pair of horses is inputted into models trained for horses and cats independently.  From the images below, we see that the model trained for horses is able to select the correct color for the horse (i.e., brown), whereas the model trained for cats selected the most common cat color (i.e., brownish grey) for the horse. 
 
 This suggests that, while both models can identify objects to-be-colored, training on similar images is important to capture the "most common" colors of the objects.  When an input is greyscale, information regarding the RGB scale is lost and model must compensate via its "intuition" of colors of similar objects.
 
-<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_horses/evaluate.png" alt="Test image for 32-color horses" width="600"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train/32_cats/evaluate.png" alt="Test image for 32-color horses" width="600"/>
+<img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_horses/evaluate.png" alt="Test image for 32-color horses" width="600"/><img src="https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/train_unet/32_cats/evaluate.png" alt="Test image for 32-color horses" width="600"/>
 
 
 ##  Method
 
-The following CNN architecture is used:
+The following vanilla CNN architecture is used:
 - 2 Downsampling Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Max Pooling)
 - 1 Refactoring Convolutional Layer (2D Convolution, Batch Normalization, ReLU)
 - 2 Upsampling Convolutional Layers (2D Convolution, Batch Normalization, ReLU, Upsampling)
 - 1 Convolutional Layer (2D Convolution)
+
+The UNet architecture is similar to that of the vanilla CNN architecture, with the following additions:
+- Skip connection from the output of the 2nd Downsampling Layer to the input of the 1st Upsampling Layer
+- Skip connection from the output of the 1st Downsampling Layer to the input of the 2nd Upsampling Layer
+- Skip connection from  the input features to the input of the final Convolutional Layer
 
 For training, the Adam optimizer and Cross Entropy Loss function were used.
 
@@ -70,9 +103,9 @@ This project requires installation of the following packages:
 - Torchvision 0.3.0
 - Numpy 1.16.4
 - Matplotlib 3.1.0
-- PIL 6.0.0
+- Pillow 6.0.0
 
-To run experiment, in [`src\color_classification.py`](https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/src/color_classification.py), set `train_params['image_classes']` to the CIFAR-10 classes to train the model on.  Indicate the location of the color numpy file to use in `train_params['colors']` and the model to load in `train_params['load_location']`.
+To run experiment, in [`src\color_classification.py`](https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/src/color_classification.py) or [`src\unet_colorization.py`](https://github.com/ArnoldYSYeung/cnn-image-colorization/blob/master/src/unet_colorization.py), set `train_params['image_classes']` to the CIFAR-10 classes to train the model on.  Indicate the location of the color numpy file to use in `train_params['colors']` and the model to load in `train_params['load_location']`.
 
 When running function `main(...)`, set parameter `train_mode=True` for training and `train_mode=False` for inference.  For evaluating with a specific image, enter in the image location in the parameter `inference_image`.
 
