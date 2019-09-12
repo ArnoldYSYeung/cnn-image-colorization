@@ -4,9 +4,9 @@ Using Convolutional Neural Networks to Colorize Greyscale Images (vanilla CNN an
 ##  Description
 A vanilla convolutional neural network (CNN) architecture and a [UNet](https://arxiv.org/abs/1505.04597) architecture are designed to convert greyscale images to colorized RGB images.  The network is trained and evaluated on independent classes in the [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html). Training RGB images are saturated to pre-selected 16- and 32-color options.  Therefore, output colorized images are also restricted to these options. 
 
-Once trained, new images may be inputted into the CNN for colorization.  Images similar to the training dataset (e.g., containing the same objects) work best with the CNN architecture.
+Our results suggest that the skip connections in the UNet architecture lead to better performance.  Skip connections allow information loss in earlier layers (e.g., due to down-sampling) to be passed to later layers, as well as reduce vanishing gradients.  Consequentially, colorized images have sharper features and more accurate colors. 
 
-Our results suggest that the skip connections in the UNet architecture leads to better performance.  This may be because skip connections allow information loss in earlier layers (e.g., due to down-sampling) to be passed to later layers.  Consequentially, colorized images have sharper features and more accurate colors. 
+It is also observed that test images similar to the training dataset (e.g., containing the same objects) work best in both CNN architectures.
 
 ##  Vanilla CNN Results
 The CNN is trained with 2 classes in the CIFAR-10 dataset: horses and cats.  Experiments for each class were conducted with both the 16-color option and the 32-color option.
